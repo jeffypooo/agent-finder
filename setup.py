@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="agent-finder-masterjefferson",
-    version="0.2",
+    version="1.0",
     author="Jefferson Jones",
     author_email="jeffersonmjones92@gmail.com",
     description="Find nearby auto insurance agents and dump them to a CSV file.",
