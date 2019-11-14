@@ -1,5 +1,5 @@
 # agent-finder
-Find nearby auto insurance agents using the Google Maps Places API. 
+Find nearby auto insurance agents using the Google Maps Places API, and dump them to a CSV file.
 
 This script was written to help automate part of
 my girlfriends job. Maybe someone else will find it useful too.
