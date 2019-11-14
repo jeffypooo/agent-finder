@@ -1,4 +1,5 @@
 import logging
+import os
 import subprocess
 import time
 import csv
@@ -19,7 +20,7 @@ to write the insurance agent details to the output CSV file.
 """
 place_detail_keys = ['name', 'formatted_address', 'formatted_phone_number', 'website', 'rating']
 
-gmaps = googlemaps.Client(key="AIzaSyCTSOMcHhgiUENn7DVLw-lsWbzYca1QnbU")
+gmaps = googlemaps.Client(key=os.environ['GOOGLE_MAPS_API_KEY'])
 
 
 def to_agent(details):
@@ -46,17 +47,18 @@ def print_agent(agent):
     log.debug(agent_string)
 
 
-def agent_search(location):
+def agent_search(location, radius_km):
     """
     Look up details of all auto insurance agents for the given location.
     :param location: A location dictionary (lat/long).
+    :param radius_km: Search radius in kilometers.
     :return: A list of agent dictionaries.
     """
     pg_token = None
     token_key = 'next_page_token'
     agents = []
     while True:
-        places_resp = gmaps.places('auto insurance', location=location, radius=10000, type='insurance_agent',
+        places_resp = gmaps.places('auto insurance', location=location, radius=1000 * radius_km, type='insurance_agent',
                                    page_token=pg_token)
         results = places_resp['results']
         for res in results:
@@ -99,11 +101,12 @@ def write_to_csv(agents, filename):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Search for insurance agents by location.")
     parser.add_argument('location', help='search location')
+    parser.add_argument('--radius', default=15, type=int, help='search radius in kilometers')
     parser.add_argument('--filename', default='output.csv', help='output filename')
     args = parser.parse_args()
-    log.info("Finding auto insurance agents in '%s'..." % args.location)
+    log.info("Finding auto insurance agents in '%s'... (radius = %d km)" % (args.location, args.radius))
     point = geocode_to_point(args.location)
-    agents = agent_search(point)
+    agents = agent_search(point, args.radius)
     log.info("Done! Found %d agents." % len(agents))
     write_to_csv(agents, args.filename)
     subprocess.run(["open", args.filename])
