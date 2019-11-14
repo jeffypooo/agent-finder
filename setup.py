@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="agent-finder-masterjefferson",
-    version="0.1",
+    version="0.2",
     author="Jefferson Jones",
     author_email="jeffersonmjones92@gmail.com",
     description="Find nearby auto insurance agents and dump them to a CSV file.",
@@ -24,7 +24,7 @@ setuptools.setup(
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: macOS",
+        "Operating System :: MacOS",
     ],
     python_requires='>=3.7.5',
 )
