@@ -1,10 +1,9 @@
+from finder import gmaps
 import logging
-import os
 import subprocess
 import time
 import csv
 import argparse
-import googlemaps
 
 """
 Logger configuration
@@ -19,8 +18,6 @@ Keys of interest in a place detail dictionary returned from google maps. These a
 to write the insurance agent details to the output CSV file.
 """
 place_detail_keys = ['name', 'formatted_address', 'formatted_phone_number', 'website', 'rating']
-
-gmaps = googlemaps.Client(key=os.environ['GOOGLE_MAPS_API_KEY'])
 
 
 def to_agent(details):
@@ -98,7 +95,7 @@ def write_to_csv(agents, filename):
         writer.writerows(agents)
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description="Search for insurance agents by location.")
     parser.add_argument('location', help='search location')
     parser.add_argument('--radius', default=15, type=int, help='search radius in kilometers')
