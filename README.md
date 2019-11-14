@@ -4,7 +4,17 @@ Find nearby auto insurance agents using the Google Maps Places API, and dump the
 This script was written to help automate part of
 my girlfriends job. Maybe someone else will find it useful too.
 
+## Google Maps API Key
+You must have the environment variable `GOOGLE_MAPS_API_KEY` set to a valid Google Maps API key.
+
+In your shell configuration file (.zshrc, .bash_profile, .bashrc, etc):
+```shell
+export GOOGLE_MAPS_API_KEY=<your-api-key>
+```
+
 ## Usage
+
+
 
 Basic search:
 
