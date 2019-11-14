@@ -4,6 +4,10 @@ Find nearby auto insurance agents using the Google Maps Places API, and dump the
 This script was written to help automate part of
 my girlfriends job. Maybe someone else will find it useful too.
 
+## Python
+
+You should have Python 3.7.5 or newer installed.
+
 ## Google Maps API Key
 You must have a valid Google Maps API key.
 
